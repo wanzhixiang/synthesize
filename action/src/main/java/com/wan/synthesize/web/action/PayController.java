@@ -1,4 +1,4 @@
-package com.wan.synehesize.web.action;
+package com.wan.synthesize.web.action;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;

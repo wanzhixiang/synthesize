@@ -1,4 +1,4 @@
-package com.wan.synthesize.utis;
+package com.wan.synthesize.utils.weChat;
 
 import java.security.MessageDigest;
 

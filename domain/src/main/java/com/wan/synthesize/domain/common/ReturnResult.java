@@ -1,4 +1,4 @@
-package com.wan.synehesize.domain.common;
+package com.wan.synthesize.domain.common;
 
 /**
  * Created by wzx on 2016/7/28.
