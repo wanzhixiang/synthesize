@@ -1,4 +1,6 @@
-package com.wan.synthesize.domain.common;
+package com.wan.synthesize.common;
+
+import com.wan.synthesize.baseenum.ReturenCodeEnum;
 
 /**
  * Created by wzx on 2016/7/28.
@@ -7,11 +9,11 @@ public class ReturnResult {
     /**
      * 是否成功
      */
-    private boolean isSuccess;
+    private boolean isSuccess = true;
     /**
      * 返回信息
      */
-    private String message;
+    private String message = ReturenCodeEnum.SUCCESS.getDesc();
     /**
      * 返回数据
      */
@@ -19,7 +21,7 @@ public class ReturnResult {
     /**
      * 返回码
      */
-    private String code;
+    private String code = ReturenCodeEnum.SUCCESS.getCode();
 
     public boolean isSuccess() {
         return isSuccess;

@@ -1,11 +1,13 @@
 package com.wan.synthesize.web.interceptor;
 
+import com.wan.synthesize.domain.UserInfo;
+import com.wan.synthesize.service.IUserService;
 import com.wan.synthesize.utils.cookie.CookieUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpSession;
 public class LoginInterceptor implements HandlerInterceptor {
 
     private static final String COOKIE_NAME="synthesize";
+
+    @Resource
+    private IUserService userService;
     /**
      * 该方法将在请求处理之前进行调用
      * @param httpServletRequest
@@ -36,12 +41,17 @@ public class LoginInterceptor implements HandlerInterceptor {
         System.out.println("url:"+url);
         //先取session
         HttpSession session = httpServletRequest.getSession();
-        UserInfo attribute = session.getAttribute("synthesize");
-        Cookie[] cookies = httpServletRequest.getCookies();
-        String userId = CookieUtil.getCookieValue(httpServletRequest, COOKIE_NAME);
-        if (StringUtils.isNotEmpty(userId)){
-
+        UserInfo userInfo = (UserInfo) session.getAttribute(COOKIE_NAME);
+        if (userInfo==null){
+            String userId = CookieUtil.getCookieValue(httpServletRequest, COOKIE_NAME);
+            if (StringUtils.isNotEmpty(userId)){
+                //查询用户
+                userInfo = userService.getUserInfoById(userId);
+                session.setAttribute(COOKIE_NAME,userInfo);
+                return true;
+            }
         }
+        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "login.action");
         return false;
     }
 
