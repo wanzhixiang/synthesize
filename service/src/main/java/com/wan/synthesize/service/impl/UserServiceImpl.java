@@ -9,7 +9,7 @@ import com.wan.synthesize.service.IUserService;
  */
 public class UserServiceImpl implements IUserService{
 
-    public UserInfo selectUserInfoById(String userId) {
+    public UserInfo getUserInfoById(String userId) {
         return null;
     }
 }

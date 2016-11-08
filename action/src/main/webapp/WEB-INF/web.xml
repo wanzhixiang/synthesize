@@ -4,7 +4,7 @@
          metadata-complete="true" version="3.0">
 
 
-    <display-name>wechat</display-name>
+    <display-name>synthesize</display-name>
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring-mvc.xml</param-value>
