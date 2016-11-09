@@ -38,10 +38,12 @@
     </bean>
     <mvc:interceptors>
         <!--定义在这的bean是对所以请求拦截-->
-        <bean class="com.wan.synthesize.web.interceptor.LoginInterceptor"/>
+
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <!--定义在这的bean是对特定的请求拦截-->
+            <mvc:exclude-mapping path="/login.htm"/>
+            <bean class="com.wan.synthesize.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
     <!-- <mvc:message-converters>

@@ -14,6 +14,7 @@ public enum ReturenCodeEnum {
     OTHER_ERROR("E999","其他错误")
     ;
 
+
     ReturenCodeEnum(String code, String desc) {
         this.code = code;
         this.desc = desc;
