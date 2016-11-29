@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd"
+       default-autowire="byName">
+
+    <bean id="dataSource" name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+
+		<!-- 驱动 -->
+		<property name="driverClass" value="${jdbc.driver}" />
+		<!-- 连接地址 -->
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<!-- 用户名 -->
+		<property name="user" value="${jdbc.username}" />
+		<!-- 密码 -->
+		<property name="password" value="${jdbc.password}" />
+		<!--连接池中保留的最小连接数。 -->
+		<property name="minPoolSize" value="3" />
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize" value="25" />
+		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime" value="1800" />
+		<!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
+		<property name="acquireIncrement" value="5" />
+		<!-- DBC的标准参数，用以控制数据源内加载的PreparedStatement数量 -->
+		<property name="maxStatements" value="50" />
+		<!-- 连接池内单个连接所拥有的最大缓存Statement数。默认为0 -->
+		<property name="maxStatementsPerConnection" value="50" />
+		<property name="initialPoolSize" value="10" />
+
+		<!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+		<property name="idleConnectionTestPeriod" value="60" />
+		<!--当连接池用完时客户端调用getConnection()后等待获取新连接的时间， 超时后将抛出 SQLException,如设为0则无限期等待。单位毫秒。Default:
+			0 -->
+		<property name="checkoutTimeout" value="30000" />
+
+		<!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
+		<property name="acquireRetryAttempts" value="30" />
+		<!--两次连接中间隔时间，单位毫秒，默认为1000 -->
+		<property name="acquireRetryDelay" value="2000" />
+		<property name="breakAfterAcquireFailure" value="false" />
+		<property name="testConnectionOnCheckout" value="false" />
+	</bean>
+	<!---->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configurationProperties">
+            <props>
+                <prop key="cacheEnabled">false</prop>
+                <prop key="localCacheScope">STATEMENT</prop>
+            </props>
+        </property>
+        <property name="dataSource" ref="dataSource" />
+		<!--指定mybatis的配置文件 如果指定了该属性，那么会以该配置文件的内容作为配置信息构建对应的SqlSessionFactoryBuilder，但是后续属性指定的内容会覆盖该配置文件里面指定的对应内容。-->
+      <!--  <property name="configLocation" value="classpath:mybatisConfig.xml" />-->
+        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+        <property name="typeAliasesPackage" value="com.wan.synthesize.domain" />
+        <!-- 显式指定Mapper文件位置 当Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值-->
+        <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml" />
+		<!--数组类型，用来指定Mybatis的Interceptor-->
+<!--        <property name="plugins">
+            <list>
+                <bean class="com.retail.app.payoff.dao.mybatis.PaginationInterceptor">
+                    <property name="dataBaseDialect">
+                        <bean
+                                class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+                            <property name="staticField">
+                                <value>
+                                </value>
+                            </property>
+                        </bean>
+                    </property>
+                </bean>
+                <bean class="com.retail.app.payoff.dao.mybatis.ExecutorInterceptor" />
+                <bean class="com.retail.app.payoff.dao.mybatis.WriteDataInterceptor" />
+            </list>
+        </property>-->
+    </bean>
+
+    <!--扫描basePackage下所有mapper -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.wan.synthesize.dao.mapper" />
+		<!--指定的是定义好的SqlSessionFactory对应的bean名称 多数据源需要  单数据源是可以不指定-->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!--只注册打标签的bean-->
+        <!--<property name="annotationClass" value="org.springframework.stereotype.Repository"/> -->
+    </bean>
+
+</beans>

@@ -11,7 +11,9 @@
     <packaging>jar</packaging>
 
     <artifactId>synthesize-domain</artifactId>
-
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
    <dependencies>
        <!-- apache commons -->
        <dependency>
@@ -81,6 +83,25 @@
            <artifactId>spring-test</artifactId>
        </dependency>
        <!--spring -->
+       <!--datasource-->
+       <dependency>
+           <groupId>c3p0</groupId>
+           <artifactId>c3p0</artifactId>
+       </dependency>
+       <!--datasource-->
+       <!--mybatis-->
+       <dependency>
+           <groupId>org.mybatis</groupId>
+           <artifactId>mybatis-spring</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>org.mybatis</groupId>
+           <artifactId>mybatis</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>mysql</groupId>
+           <artifactId>mysql-connector-java</artifactId>
+       </dependency>
    </dependencies>
 
 </project>

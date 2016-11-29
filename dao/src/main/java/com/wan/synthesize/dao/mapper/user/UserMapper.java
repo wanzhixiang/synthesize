@@ -1,12 +1,11 @@
-package com.wan.synthesize.service;
+package com.wan.synthesize.dao.mapper.user;
 
 import com.wan.synthesize.domain.UserInfo;
 
 /**
- * Created by zhixiang.wan on 2016/10/24.
- * 基础用户service类
+ * Created by wzx on 2016/11/29.
  */
-public interface IUserService {
+public interface UserMapper {
 
     /**
      * 通过id查询用户

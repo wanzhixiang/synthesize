@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="GBK"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -8,9 +8,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
        default-autowire="byName">
 
-    <!--¿ªÆôÄ¬ÈÏµÄhandlerÊÇtomcatÔÚÕÒ²»×ÊÔ´Ê±»áÕÒ¾²Ì¬ÄÚÈİ-->
+    <!--å¼€å¯é»˜è®¤çš„handleræ˜¯tomcatåœ¨æ‰¾ä¸èµ„æºæ—¶ä¼šæ‰¾é™æ€å†…å®¹-->
     <mvc:default-servlet-handler/>
-    <!--¿ªÆô±êÇ©Çı¶¯-->
+    <!--å¼€å¯æ ‡ç­¾é©±åŠ¨-->
     <mvc:annotation-driven/>
     <context:component-scan base-package="com.wan.synthesize.web.action,com.wan.synthesize.service">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
@@ -37,12 +37,18 @@
         </property>
     </bean>
     <mvc:interceptors>
-        <!--¶¨ÒåÔÚÕâµÄbeanÊÇ¶ÔËùÒÔÇëÇóÀ¹½Ø-->
+        <!--å®šä¹‰åœ¨è¿™çš„beanæ˜¯å¯¹æ‰€ä»¥è¯·æ±‚æ‹¦æˆª-->
 
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <!--¶¨ÒåÔÚÕâµÄbeanÊÇ¶ÔÌØ¶¨µÄÇëÇóÀ¹½Ø-->
-            <mvc:exclude-mapping path="/login.htm"/>
+            <!--å®šä¹‰åœ¨è¿™çš„beanæ˜¯å¯¹ç‰¹å®šçš„è¯·æ±‚æ‹¦æˆª-->
+            <mvc:exclude-mapping path="/WEB-INF/index.html"/>
+            <mvc:exclude-mapping path="/index.action"/>
+            <mvc:exclude-mapping path="/login.action"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/js/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/favicon.ico"/>
             <bean class="com.wan.synthesize.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
@@ -83,10 +89,10 @@
 
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UTF-8" /> &lt;!&ndash; Ä¬ÈÏ±àÂë (ISO-8859-1) &ndash;&gt;
-        <property name="maxInMemorySize" value="10240" /> &lt;!&ndash; ×î´óÄÚ´æ´óĞ¡ (10240) &ndash;&gt;
-        <property name="uploadTempDir" value="../webapp" /> &lt;!&ndash; ÉÏ´«ºóµÄÄ¿Â¼Ãû (WebUtils#TEMP_DIR_CONTEXT_ATTRIBUTE) &ndash;&gt;
-        <property name="maxUploadSize" value="31457280" /> &lt;!&ndash; ×î´óÎÄ¼ş´óĞ¡£¬-1ÎªÎŞÏŞÖ¹(-1) &ndash;&gt;
+        <property name="defaultEncoding" value="UTF-8" /> &lt;!&ndash; é»˜è®¤ç¼–ç  (ISO-8859-1) &ndash;&gt;
+        <property name="maxInMemorySize" value="10240" /> &lt;!&ndash; æœ€å¤§å†…å­˜å¤§å° (10240) &ndash;&gt;
+        <property name="uploadTempDir" value="../webapp" /> &lt;!&ndash; ä¸Šä¼ åçš„ç›®å½•å (WebUtils#TEMP_DIR_CONTEXT_ATTRIBUTE) &ndash;&gt;
+        <property name="maxUploadSize" value="31457280" /> &lt;!&ndash; æœ€å¤§æ–‡ä»¶å¤§å°ï¼Œ-1ä¸ºæ— é™æ­¢(-1) &ndash;&gt;
     </bean>-->
 
 </beans>
