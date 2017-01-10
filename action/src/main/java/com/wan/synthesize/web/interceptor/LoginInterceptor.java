@@ -1,7 +1,9 @@
 package com.wan.synthesize.web.interceptor;
 
+import com.wan.synthesize.baseenum.ConsisEnum;
 import com.wan.synthesize.domain.UserInfo;
 import com.wan.synthesize.service.IUserService;
+import com.wan.synthesize.utils.RoleUtil;
 import com.wan.synthesize.utils.cookie.CookieUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -20,8 +22,6 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginInterceptor implements HandlerInterceptor {
 
-    private static final String COOKIE_NAME="synthesize";
-
     @Resource
     private IUserService userService;
     /**
@@ -36,22 +36,18 @@ public class LoginInterceptor implements HandlerInterceptor {
         String requestUri = httpServletRequest.getRequestURI();
         String contextPath = httpServletRequest.getContextPath();
         String url = requestUri.substring(contextPath.length());
-        System.out.println("requestUri:"+requestUri);
-        System.out.println("contextPath:"+contextPath);
-        System.out.println("url:"+url);
         //先取session
         HttpSession session = httpServletRequest.getSession();
-        UserInfo userInfo = (UserInfo) session.getAttribute(COOKIE_NAME);
-        if (userInfo==null){
-            String userId = CookieUtil.getCookieValue(httpServletRequest, COOKIE_NAME);
-            if (StringUtils.isNotEmpty(userId)){
-                //查询用户
-                userInfo = userService.getUserInfoById(userId);
-                session.setAttribute(COOKIE_NAME,userInfo);
-                return true;
+        UserInfo userInfo = (UserInfo) session.getAttribute(ConsisEnum.USER_SESSION.name());
+        if(userInfo!=null){
+            //判断是否有权限.
+            boolean allowed = RoleUtil.isAllowed(userInfo, url);
+            if (!allowed){
+                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "login.html");
             }
+            return allowed;
         }
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "login.action");
+        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "login.html");
         return false;
     }
 

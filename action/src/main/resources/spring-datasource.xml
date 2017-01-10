@@ -2,14 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop.xsd"
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+  	   http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd"
        default-autowire="byName">
 
+	<!--数据源-->
     <bean id="dataSource" name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-
 		<!-- 驱动 -->
 		<property name="driverClass" value="${jdbc.driver}" />
 		<!-- 连接地址 -->
@@ -45,7 +48,8 @@
 		<property name="breakAfterAcquireFailure" value="false" />
 		<property name="testConnectionOnCheckout" value="false" />
 	</bean>
-	<!---->
+
+	<!--mybatis-spring 配置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configurationProperties">
             <props>
@@ -57,7 +61,7 @@
 		<!--指定mybatis的配置文件 如果指定了该属性，那么会以该配置文件的内容作为配置信息构建对应的SqlSessionFactoryBuilder，但是后续属性指定的内容会覆盖该配置文件里面指定的对应内容。-->
       <!--  <property name="configLocation" value="classpath:mybatisConfig.xml" />-->
         <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
-        <property name="typeAliasesPackage" value="com.wan.synthesize.domain" />
+		<property name="typeAliasesPackage" value="com.wan.synthesize.domain" />
         <!-- 显式指定Mapper文件位置 当Mapper文件跟对应的Mapper接口处于同一位置的时候可以不用指定该属性的值-->
         <property name="mapperLocations" value="classpath:/mapper/*Mapper.xml" />
 		<!--数组类型，用来指定Mybatis的Interceptor-->
@@ -89,4 +93,22 @@
         <!--<property name="annotationClass" value="org.springframework.stereotype.Repository"/> -->
     </bean>
 
+	<!--  事务管理器  -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="transactionPointcut"
+					  expression="execution(* com.wan.synthesize.service.*.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut"
+					 advice-ref="txAdvice" />
+	</aop:config>
+	<aop:aspectj-autoproxy />
 </beans>

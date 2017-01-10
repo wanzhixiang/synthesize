@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -25,21 +24,31 @@ public class LoginController {
 
     @Resource
     private IUserService service;
+
     /**
-     * 登录页
+     * 首页
      * @return
      */
     @RequestMapping(value = "/index")
     public String index(){
-        return "WEB-INF/index";
+        return "/WEB-INF/system/index";
     }
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     @ResponseBody
     public ReturnResult login(HttpServletRequest request,UserInfo userInfo){
         ReturnResult result = new ReturnResult();
-        service.checkUser(userInfo);
-
+        String validate = userInfo.validate();
+        if (validate!=null || "".equals(validate)){
+            result.setSuccess(false);
+            result.setMessage(validate);
+            return result;
+        }
+        boolean b = service.checkUser(userInfo);
+        if(!b){
+            result.setSuccess(false);
+            result.setMessage("用户名或密码错误");
+        }
         return result;
     }
 

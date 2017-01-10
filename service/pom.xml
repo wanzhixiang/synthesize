@@ -21,10 +21,5 @@
             <artifactId>synthesize-dao</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.wan.project</groupId>
-            <artifactId>synthesize-utils</artifactId>
-            <version>${project.parent.version}</version>
-        </dependency>
     </dependencies>
 </project>

@@ -10,14 +10,14 @@ public interface UserMapper {
     /**
      * 通过id查询用户
      * @param userId
-     * @return
+     * @return 用户信息类
      */
     UserInfo getUserInfoById(String userId);
 
     /**
-     * 校验用户是否存在
-     * @param userInfo 用户类
-     * @return true：存在;false:不存在
+     * 通过用户名查询用户
+     * @param userName 用户名
+     * @return 用户信息类
      */
-    boolean checkUser(UserInfo userInfo);
+    UserInfo getUserInfoByName(String userName);
 }

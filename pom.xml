@@ -90,6 +90,17 @@
                 <version>${spring.version}</version>
                 <scope>development</scope>
             </dependency>
+            <!-- aspectj -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>1.7.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.7.4</version>
+            </dependency>
 
             <!-- apache commons -->
             <dependency>
