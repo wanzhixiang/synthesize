@@ -53,6 +53,8 @@ public class UserInfo {
         this.roles = roles;
     }
 
+
+
     public String validate(){
         StringBuffer sb = new StringBuffer();
         if (userName==null || userName.equals("")){

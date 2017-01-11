@@ -14,6 +14,13 @@ public class RoleController {
     /**
      * 获取角色
      */
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "/WEB-INF/system/role";
+    }
+    /**
+     * 获取角色
+     */
     @RequestMapping(value = "/getRoleByUser")
     @ResponseBody
     public void getRoleByUser() {

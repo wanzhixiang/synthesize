@@ -14,6 +14,14 @@ public class Usercontroller {
     /**
      * 获取用户
      */
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "/WEB-INF/system/user";
+    }
+
+    /**
+     * 获取用户
+     */
     @RequestMapping(value = "/getUsers")
     @ResponseBody
     public void getUsers() {

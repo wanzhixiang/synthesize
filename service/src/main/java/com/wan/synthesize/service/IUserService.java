@@ -16,9 +16,9 @@ public interface IUserService {
     UserInfo getUserInfoById(String userId);
 
     /**
-     * 校验用户是否存在
-     * @param userInfo 用户类
+     * 通过用户名查询用户
+     * @param userName 用户类
      * @return true：存在;false:不存在
      */
-    boolean checkUser(UserInfo userInfo);
+    UserInfo getUserInfoByName(String userName);
 }

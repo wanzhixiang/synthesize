@@ -1,11 +1,9 @@
 package com.wan.synthesize.web.interceptor;
 
 import com.wan.synthesize.baseenum.ConsisEnum;
+import com.wan.synthesize.domain.Menu;
 import com.wan.synthesize.domain.UserInfo;
 import com.wan.synthesize.service.IUserService;
-import com.wan.synthesize.utils.RoleUtil;
-import com.wan.synthesize.utils.cookie.CookieUtil;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,6 +11,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by zhixiang.wan on 2016/10/21.
@@ -40,14 +39,22 @@ public class LoginInterceptor implements HandlerInterceptor {
         HttpSession session = httpServletRequest.getSession();
         UserInfo userInfo = (UserInfo) session.getAttribute(ConsisEnum.USER_SESSION.name());
         if(userInfo!=null){
+            boolean allowed = false;
             //判断是否有权限.
-            boolean allowed = RoleUtil.isAllowed(userInfo, url);
+            List<Menu> menus = (List<Menu>) session.getAttribute(ConsisEnum.MENU_SESSION.name());
+            for (Menu menu : menus) {
+                String url1 = menu.getUrl();
+                if (url.equals(url1)){
+                    allowed = true;
+                    break;
+                }
+            }
             if (!allowed){
-                httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "login.html");
+                httpServletResponse.sendRedirect(contextPath + "/login.html");
             }
             return allowed;
         }
-        httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "login.html");
+        httpServletResponse.sendRedirect(contextPath + "/login.html");
         return false;
     }
 

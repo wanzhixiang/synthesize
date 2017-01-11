@@ -1,6 +1,7 @@
 package com.wan.synthesize.web.action;
 
 import com.wan.synthesize.baseenum.ConsisEnum;
+import com.wan.synthesize.domain.Role;
 import com.wan.synthesize.domain.UserInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by wzx on 2016/12/27.
@@ -17,13 +19,11 @@ import javax.servlet.http.HttpSession;
 public class MenuController {
 
     /**
-     * 获取用户的菜单权限
+     * 进入菜单页
      */
-    @RequestMapping(value = "/getMenuByUser")
-    @ResponseBody
-    public void getMenuByUser(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        UserInfo userInfo = (UserInfo) session.getAttribute(ConsisEnum.USER_SESSION.name());
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "/WEB-INF/system/menu";
     }
 
     /**

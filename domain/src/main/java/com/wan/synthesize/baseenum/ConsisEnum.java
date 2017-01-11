@@ -5,7 +5,7 @@ package com.wan.synthesize.baseenum;
  * 系统配置Enum
  */
 public enum  ConsisEnum {
-    USER_SESSION("用户登录session");
+    USER_SESSION("用户登录session"),MENU_SESSION("用户菜单session");
     private String des;
 
     ConsisEnum(String des) {

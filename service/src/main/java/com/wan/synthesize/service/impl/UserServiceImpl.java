@@ -5,7 +5,6 @@ import com.wan.synthesize.domain.UserInfo;
 import com.wan.synthesize.service.IUserService;
 import com.wan.synthesize.utils.weChat.WXMD5;
 import org.springframework.stereotype.Service;
-import sun.security.provider.MD5;
 
 import javax.annotation.Resource;
 
@@ -23,15 +22,8 @@ public class UserServiceImpl implements IUserService{
         return mapper.getUserInfoById(userId);
     }
 
-    public boolean checkUser(UserInfo userInfo) {
-        UserInfo user = mapper.getUserInfoByName(userInfo.getUserName());
-        if (user!=null){
-            String password = user.getPassword();
-            String messageDigest = WXMD5.getMessageDigest(userInfo.getPassword().getBytes());
-            if (password.equals(messageDigest)){
-                return true;
-            }
-        }
-        return false;
+    public UserInfo getUserInfoByName(String userName) {
+        UserInfo user = mapper.getUserInfoByName(userName);
+        return user;
     }
 }

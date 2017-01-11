@@ -6,7 +6,8 @@
     <select id="getUserInfoById" resultType="com.wan.synthesize.domain.UserInfo">
 
     </select>
-    <select id="checkUser" resultType="Boolean">
-        SELECT 1 FROM t_menu limit 2;
+
+    <select id="getUserInfoByName" resultType="com.wan.synthesize.domain.UserInfo" parameterType="String">
+        SELECT user_name userName ,password FROM t_user WHERE user_name=#{name}
     </select>
 </mapper>

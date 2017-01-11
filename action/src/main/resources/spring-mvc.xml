@@ -43,12 +43,12 @@
             <mvc:mapping path="/**"/>
             <!--定义在这的bean是对特定的请求拦截-->
             <mvc:exclude-mapping path="/login.html"/>
-            <mvc:exclude-mapping path="/index.action"/>
             <mvc:exclude-mapping path="/login.action"/>
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/js/**"/>
             <mvc:exclude-mapping path="/images/**"/>
             <mvc:exclude-mapping path="/favicon.ico"/>
+            <mvc:exclude-mapping path="/plugin/**"/>
             <bean class="com.wan.synthesize.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
