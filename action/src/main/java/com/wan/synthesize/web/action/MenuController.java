@@ -3,6 +3,7 @@ package com.wan.synthesize.web.action;
 import com.wan.synthesize.baseenum.ConsisEnum;
 import com.wan.synthesize.domain.Role;
 import com.wan.synthesize.domain.UserInfo;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,15 +17,9 @@ import java.util.List;
  * 菜单管理
  */
 @RequestMapping("/menu")
+@Controller
 public class MenuController {
 
-    /**
-     * 进入菜单页
-     */
-    @RequestMapping(value = "/index")
-    public String index() {
-        return "/WEB-INF/system/menu";
-    }
 
     /**
      * 获取菜单

@@ -1,6 +1,7 @@
 package com.wan.synthesize.web.action;
 
 import com.wan.synthesize.baseenum.ConsisEnum;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * 角色管理
  */
 @RequestMapping(value = "/role")
+@Controller
 public class RoleController {
 
     /**

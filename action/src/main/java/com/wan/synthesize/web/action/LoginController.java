@@ -27,14 +27,6 @@ public class LoginController {
     @Resource
     private IUserService service;
 
-    /**
-     * 首页
-     * @return
-     */
-    @RequestMapping(value = "/index")
-    public String index(){
-        return "/WEB-INF/system/index";
-    }
 
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
