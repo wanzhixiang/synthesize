@@ -1,16 +1,8 @@
 package com.wan.synthesize.web.action;
 
-import com.wan.synthesize.baseenum.ConsisEnum;
-import com.wan.synthesize.domain.Role;
-import com.wan.synthesize.domain.UserInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * Created by wzx on 2016/12/27.
@@ -22,9 +14,18 @@ public class MenuController {
 
 
     /**
-     * 获取菜单
+     * 获取菜单栏
      */
-    @RequestMapping(value = "/getMenus")
+    @RequestMapping(value = "/getMenu")
+    @ResponseBody
+    public void getMenuTree() {
+
+    }
+
+    /**
+     * 获取菜单列表
+     */
+    @RequestMapping(value = "/getMenuList")
     @ResponseBody
     public void getMenus() {
 
