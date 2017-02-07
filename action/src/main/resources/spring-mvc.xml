@@ -36,12 +36,12 @@
             </list>
         </property>
     </bean>
-    <mvc:interceptors>
-        <!--定义在这的bean是对所以请求拦截-->
+  <!--  <mvc:interceptors>
+        &lt;!&ndash;定义在这的bean是对所以请求拦截&ndash;&gt;
 
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <!--定义在这的bean是对特定的请求拦截-->
+            &lt;!&ndash;定义在这的bean是对特定的请求拦截&ndash;&gt;
             <mvc:exclude-mapping path="/login.html"/>
             <mvc:exclude-mapping path="/html/system/index.html"/>
             <mvc:exclude-mapping path="/login.action"/>
@@ -52,7 +52,7 @@
             <mvc:exclude-mapping path="/plugin/**"/>
             <bean class="com.wan.synthesize.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
     <!-- <mvc:message-converters>
         <bean class="com.customer.app.common.UTF8StringHttpMessageConverter"/>
         <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
