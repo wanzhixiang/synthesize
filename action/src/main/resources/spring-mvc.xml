@@ -47,7 +47,7 @@
             <mvc:exclude-mapping path="/login.action"/>
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/js/**"/>
-            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/immages/**"/>
             <mvc:exclude-mapping path="/favicon.ico"/>
             <mvc:exclude-mapping path="/plugin/**"/>
             <bean class="com.wan.synthesize.web.interceptor.LoginInterceptor"/>

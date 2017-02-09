@@ -10,7 +10,7 @@ public enum ReturenCodeEnum {
     DATA_IS_NULL("E001","参数为空"),
     DATA_TYPE_ERROR("E002","参数格式错误"),
     DATA_VALUE_ERROR("E003","参数值错误"),
-
+    SYSTEM_ERROR("E009","系统错误"),
     OTHER_ERROR("E999","其他错误")
     ;
 
