@@ -39,20 +39,24 @@ public class LoginController {
             result.setMessage(validate);
             return result;
         }
-        UserInfo user = service.getUserInfoByName(userInfo.getUserName());
-        boolean b = false;
-        if (user!=null){
-            String password = user.getPassword();
-            String messageDigest = WXMD5.getMessageDigest(userInfo.getPassword().getBytes());
-            if (password.equals(messageDigest)){
-               //将用户放入session
-                b = true;
-                request.getSession().getAttribute(ConsisEnum.USER_SESSION.name());
+        try{
+            UserInfo user = service.getUserInfoByName(userInfo.getUserName());
+            boolean b = false;
+            if (user!=null){
+                String password = user.getPassword();
+                String messageDigest = WXMD5.getMessageDigest(userInfo.getPassword().getBytes());
+                if (password.equals(messageDigest)){
+                    //将用户放入session
+                    b = true;
+                    request.getSession().getAttribute(ConsisEnum.USER_SESSION.name());
+                }
             }
-        }
-        if(!b){
-            result.setSuccess(false);
-            result.setMessage("用户名或密码错误");
+            if(!b){
+                result.setSuccess(false);
+                result.setMessage("用户名或密码错误");
+            }
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
         }
         return result;
     }

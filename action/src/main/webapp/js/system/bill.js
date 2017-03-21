@@ -10,7 +10,7 @@ $("#billSave").click(function () {
     var billRemark = $("#billRemark").val();
     if (inputIsNull(billName,"billName") && inputIsNull(billPrice,"billPrice") && inputIsNull(billAddress,"billAddress") && inputIsNull(billDate,"billDate")) {
         var url = "/bill/add.action";
-        var param = {};
+        var param = {"name":billName,"price":billPrice,"address":billAddress,"date":billDate,"remark":billRemark};
         $.post(url,param,function (data) {
             if (data.success){
                 $("#close").click;

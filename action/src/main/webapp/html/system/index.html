@@ -72,21 +72,19 @@
             <h3 class="menu_head current">系统管理</h3>
             <div class="menu_body">
                 <a _link="/html/system/menu.html">菜单管理</a>
-                <a _link="/html/system/picture.html">账户管理</a>
-                <a _link="/html/system/picture.html">权限管理</a>
+                <a _link="">账户管理</a>
+                <a _link="">权限管理</a>
                 <a href="#"></a>
             </div>
             <h3 class="menu_head">居家应用</h3>
             <div class="menu_body" style="display: none">
-                <a _link="/html/system/menu.html">账单管理</a>
-                <a _link="/html/system/picture.html">照片</a>
-                <a _link="/html/system/picture.html"></a>
-                <a href="#"></a>
+                <a _link="/html/application/bill.html">账单列表</a>
+                <a _link="">账单统计</a>
             </div>
             <h3 class="menu_head">微信管理</h3>
             <div class="menu_body" style="display: none">
-                <a _link="/html/system/menu.html">微信小程序</a>
-                <a _link="/html/system/picture.html">照片</a>
+                <a _link="">微信小程序</a>
+                <a _link="">照片</a>
                 <a href="#"></a>
             </div>
         </div>
@@ -109,7 +107,7 @@
 <script>
     $(document).ready(function(){
         $(".sidebar .menu_body:eq(0)").show();
-        $(".sidebar h3.menu_head").click(function(){
+        $(".sidebar h3.menu_head").unbind("click").click(function(){
             $(this).addClass("current").next("div.menu_body").slideToggle(300).siblings("div.menu_body").slideUp("slow");
             $(this).siblings().removeClass("current");
         });
