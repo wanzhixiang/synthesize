@@ -36,56 +36,43 @@
 
 <ul class="nav nav-list">
     <li class="">
-        <a href="index.html">
+        <a href="#" _link="/html/system/index.html" id="link">
             <i class="menu-icon fa fa-tachometer"></i>
-            <span class="menu-text"> Dashboard </span>
+            <span class="menu-text"> 首页 </span>
         </a>
-
         <b class="arrow"></b>
     </li>
 
     <li class="">
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-desktop"></i>
-            <span class="menu-text">
-								UI &amp; Elements
-							</span>
-
+            <span class="menu-text">UI &amp; Elements</span>
             <b class="arrow fa fa-angle-down"></b>
         </a>
-
         <b class="arrow"></b>
-
         <ul class="submenu">
             <li class="">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-caret-right"></i>
-
                     Layouts
                     <b class="arrow fa fa-angle-down"></b>
                 </a>
-
                 <b class="arrow"></b>
-
                 <ul class="submenu">
                     <li class="">
                         <a href="top-menu.html">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Top Menu
                         </a>
-
                         <b class="arrow"></b>
                     </li>
-
                     <li class="">
                         <a href="two-menu-1.html">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Two Menus 1
                         </a>
-
                         <b class="arrow"></b>
                     </li>
-
                     <li class="">
                         <a href="two-menu-2.html">
                             <i class="menu-icon fa fa-caret-right"></i>
@@ -147,7 +134,6 @@
                     <i class="menu-icon fa fa-caret-right"></i>
                     Buttons &amp; Icons
                 </a>
-
                 <b class="arrow"></b>
             </li>
 
@@ -258,7 +244,6 @@
                     <i class="menu-icon fa fa-caret-right"></i>
                     Simple &amp; Dynamic
                 </a>
-
                 <b class="arrow"></b>
             </li>
 
@@ -518,8 +503,57 @@
             </li>
         </ul>
     </li>
+
 </ul><!-- /.nav-list -->
 
 <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
     <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
 </div>
+<script src="/plugin/jquery-loadTemplate/jquery.loadTemplate-1.4.4.min.js"></script>
+<!--一级菜单模板-->
+<script type="text/html" id="template">
+    <li class="" data-template-bind='[{"attribute": "url","value": "url"}]' data-id="link">
+        <a href="#">
+            <i class="menu-icon fa fa-tachometer"></i>
+            <span class="menu-text" data-content="name"></span>
+        </a>
+        <b class="arrow"></b>
+    </li>
+</script>
+<script type="text/html" id="template1">
+    <li class="" data-template-bind='[{"attribute": "url","value": "url"}]' data-id="link">
+        <a href="#">
+            <i class="menu-icon fa fa-tachometer"></i>
+            <span class="menu-text" data-content="name"></span>
+        </a>
+        <b class="arrow"></b>
+    </li>
+    <ul class="submenu"></ul>
+</script>
+<script type="application/javascript">
+    /*加载菜单*/
+    $.post("/html/system/data.json",function (data) {
+       if(data.success){
+           var dataValues = data.data;
+           $(".nav-list").loadTemplate($("#template1"), dataValues);//一级菜单
+           var i = 0;
+           for(var dataValue in dataValues){
+               if(dataValue.subMenu!= null){
+                   //二级菜单
+                   $(".submenu").eq(i).loadTemplate($("#template"), dataValues);//一级菜单
+                   i ++;
+               }
+           }
+       } else{
+           alert(data.message);
+       }
+    });
+    /*菜单点击*/
+    $("#link").click(function () {
+        var _link = $(this).attr("_link");
+        console.log(_link);
+        $.get(_link,function (data) {
+            $(".row").html(data);
+        });
+    });
+</script>

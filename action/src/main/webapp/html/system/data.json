@@ -1,0 +1,12 @@
+{
+  "success":true,
+  "message":"",
+  "code":"001",
+  "data":[
+    {
+      "id":"1",
+      "url":"/html/system/index.html",
+      "name":"首页"
+    }
+  ]
+}
