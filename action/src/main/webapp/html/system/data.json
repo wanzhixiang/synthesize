@@ -5,8 +5,37 @@
   "data":[
     {
       "id":"1",
-      "url":"/html/system/index.html",
-      "name":"首页"
+      "url":"",
+      "name":"首页",
+      "subMenu":[
+        {
+          "id":"5",
+          "url":"\/html\/application\/tables.html",
+          "name":"一"
+        },
+        {
+          "id":"6",
+          "url":"\/html\/application\/tables1.html",
+          "name":"二"
+        }
+        ]
+    },
+    {
+      "id":"2",
+      "url":"",
+      "name":"应用",
+      "subMenu":[
+        {
+          "id":"3",
+          "url":"\/html\/system\/index4.html",
+          "name":"一"
+        },
+        {
+          "id":"4",
+          "url":"\/html\/system\/index5.html",
+          "name":"二"
+        }
+      ]
     }
   ]
 }

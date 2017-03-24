@@ -16,6 +16,7 @@
 
 		<!-- text fonts -->
 		<link rel="stylesheet" href="/plugin/ace_admin_v1.4.0/css/ace-fonts.css" />
+		<link rel="stylesheet" href="/css/system/common.css" />
 
 		<!-- ace styles -->
 		<link rel="stylesheet" href="/plugin/ace_admin_v1.4.0/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
@@ -118,7 +119,16 @@
 
 		<script src="/plugin/bootstrap-3.3.7/js/bootstrap.js"></script>
 		<!-- page specific plugin scripts -->
-
+        <script type="application/javascript">
+            /*导航*/
+            $.get("/html/system/head.html",function (data) {
+                $("#navbar").html(data);
+            })
+            /*菜单*/
+            $.get("/html/system/left.html",function (data) {
+                $("#sidebar").html(data);
+            })
+        </script>
 		<!-- ace scripts -->
 		<!--<script src="/plugin/ace_admin_v1.4.0/elements/elements.scroller.js"></script>-->
 		<!--<script src="/plugin/ace_admin_v1.4.0/elements/elements.colorpicker.js"></script>--><!--取颜色-->
@@ -144,20 +154,7 @@
 		<script src="/plugin/ace_admin_v1.4.0/ace/ace.settings-skin.js"></script>-->
 		<script src="/plugin/ace_admin_v1.4.0/ace/ace.widget-on-reload.js"></script> <!--提示-->
 		<!--<script src="/plugin/ace_admin_v1.4.0/ace/ace.searchbox-autocomplete.js"></script> -->
-
 		<!-- inline scripts related to this page -->
 		<!--第三方插件-->
-
 	</body>
-	<script type="application/javascript">
-		/*导航*/
-		$.get("/html/system/head.html",function (data) {
-			$("#navbar").html(data);
-		})
-		/*菜单*/
-		$.get("/html/system/left.html",function (data) {
-			$("#sidebar").html(data);
-		})
-
-	</script>
 </html>
