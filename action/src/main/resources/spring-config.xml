@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+        xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+                    http://www.springframework.org/schema/context
+                    http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+        default-autowire="byName">
+
+
+    <!--开启标签驱动-->
+    <context:component-scan base-package="com.wan.synthesize">
+        <context:exclude-filter  type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--等同如下注释 多个文件','分隔-->
+    <context:property-placeholder location="classpath*:dev.properties"/>
+
+  <!--  <bean id="propertyPlaceholder" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:dev.properties</value>
+            </list>
+        </property>
+    </bean>-->
+
+
+    <import resource="classpath*:/spring-datasource.xml"/>
+
+</beans>

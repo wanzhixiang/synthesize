@@ -1,0 +1,164 @@
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="mb10">
+                <button class="btn btn-info navbar-btn" type="button" data-toggle="modal" data-target="#myModal">新增</button>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>
+                        编号
+                    </th>
+                    <th>
+                        产品
+                    </th>
+                    <th>
+                        交付时间
+                    </th>
+                    <th>
+                        状态
+                    </th>
+                    <th>
+                        操作
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        TB - Monthly
+                    </td>
+                    <td>
+                        01/04/2012
+                    </td>
+                    <td>
+                        Default
+                    </td>
+                    <td>
+                        <a href="#">明细</a>
+                    </td>
+                </tr>
+                <tr class="success">
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        TB - Monthly
+                    </td>
+                    <td>
+                        01/04/2012
+                    </td>
+                    <td>
+                        Approved
+                    </td>
+                </tr>
+                <tr class="error">
+                    <td>
+                        2
+                    </td>
+                    <td>
+                        TB - Monthly
+                    </td>
+                    <td>
+                        02/04/2012
+                    </td>
+                    <td>
+                        Declined
+                    </td>
+                </tr>
+                <tr class="warning">
+                    <td>
+                        3
+                    </td>
+                    <td>
+                        TB - Monthly
+                    </td>
+                    <td>
+                        03/04/2012
+                    </td>
+                    <td>
+                        Pending
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td>
+                        4
+                    </td>
+                    <td>
+                        TB - Monthly
+                    </td>
+                    <td>
+                        04/04/2012
+                    </td>
+                    <td>
+                        Call in to confirm
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation " class="tc">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!--添加数据弹出框-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增记录</h4>
+                </div>
+                <div class="modal-body">
+                        <form class="form-inline" id="billAdd">
+                            <div class="row mb5">
+                                <fieldset class="col-xs-6 col-sm-6 pr5">
+                                    <label class="red">*</label><label class="mr5">消费名称:</label><input type="text" id="billName" class="form-control" />
+                                </fieldset>
+                                <fieldset class="col-xs-6 col-sm-6 pr5">
+                                    <label class="red">*</label><label class="mr5">消费金额:</label><input type="text" id="billPrice" class="form-control"/>
+                                </fieldset>
+                            </div>
+                            <div class="row mb5">
+                                <fieldset class="col-xs-6 col-sm-6 pr5">
+                                    <label class="red">*</label><label class="mr5">消费地点:</label><input type="text" id="billAddress" class="form-control"/>
+                                </fieldset>
+                                <fieldset class="col-xs-6 col-sm-6 pr5">
+                                    <label class="red">*</label><label class="mr5">消费日期:</label><input type="text" id="billDate" class="form-control" id="indate"/>
+                                </fieldset>
+                            </div>
+                            <div class="row mb5">
+                                <fieldset class="col-xs-12 col-sm-12">
+                                    <label class="mr5">&nbsp;消费备注:</label><textarea class="form-control" id="billRemark"/>
+                                </fieldset>
+                            </div>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close">关闭</button>
+                    <button type="button" class="btn btn-primary" id="billSave">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="application/javascript" src="/js/system/bill.js"></script>
